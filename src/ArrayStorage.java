@@ -40,14 +40,7 @@ public class ArrayStorage {
      */
     Resume[] getAll() {
         Resume[] st_getAll = new Resume[resNum];
-        int j = 0;
-        for (int i = 0; i < resNum; i++) {
-            if (storage[i] != null) {
-                st_getAll[j] = storage[i];
-                j++;
-            }
-        }
-
+        System.arraycopy(storage, 0, st_getAll, 0, resNum);
         return st_getAll;
     }
 
