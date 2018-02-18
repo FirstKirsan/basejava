@@ -1,7 +1,4 @@
-/**
- * Array based storage for Resumes
- */
-public class ArrayStorage {
+public class ArrayStorage1 {
     private Resume[] storage = new Resume[10000];
     private int size = 0;
 
