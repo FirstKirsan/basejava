@@ -1,3 +1,5 @@
+import com.urise.webapp.model.Resume;
+
 public class ArrayStorage1 {
     private Resume[] storage = new Resume[10000];
     private int size = 0;
@@ -10,19 +12,19 @@ public class ArrayStorage1 {
     public void update(Resume r) {
         boolean resumeExists = false;
         for (int i=0; i<size; i++) {
-            if ((storage[i] != null) && (storage[i].uuid.equals(r.uuid))) {
+            if ((storage[i] != null) && (storage[i].getUuid().equals(r.getUuid()))) {
                 // update
                 resumeExists = true;
                 break;
             }
         }
-        if (!resumeExists) System.out.println("(UpDate) Error: Resume does not exist.");
+        if (!resumeExists) System.out.println("(UpDate) Error: com.urise.webapp.model.Resume does not exist.");
     }
 
     public void save(Resume r) {
         boolean resumeExists = false;
         for (int i=0; i<size; i++) {
-            if (storage[i].uuid.equals(r.uuid)) {
+            if (storage[i].getUuid().equals(r.getUuid())) {
                 System.out.println("Error: This resume already exists.");
                 resumeExists = true;
                 break;
@@ -36,7 +38,7 @@ public class ArrayStorage1 {
 
     public Resume get(String uuid) {
         for (int i = 0; i < size; i++) {
-            if ((storage[i] != null) && (storage[i].uuid.equals(uuid))) {
+            if ((storage[i] != null) && (storage[i].getUuid().equals(uuid))) {
                 return storage[i];
             }
         }
@@ -46,7 +48,7 @@ public class ArrayStorage1 {
     public void delete(String uuid) {
         boolean resumeExists = false;
         for (int i = 0; i < size; i++) {
-            if ((storage[i] != null) && (storage[i].uuid.equals(uuid))) {
+            if ((storage[i] != null) && (storage[i].getUuid().equals(uuid))) {
                 size--;
                 storage[i] = storage[size];
                 storage[size] = null;
@@ -54,7 +56,7 @@ public class ArrayStorage1 {
                 break;
             }
         }
-        if (!resumeExists) System.out.println("(Delete) Error: Resume does not exist.");
+        if (!resumeExists) System.out.println("(Delete) Error: com.urise.webapp.model.Resume does not exist.");
     }
 
     /**
