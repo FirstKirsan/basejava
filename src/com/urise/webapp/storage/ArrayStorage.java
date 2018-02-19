@@ -17,7 +17,7 @@ public class ArrayStorage {
     public void update(Resume r) {
         int resumeExists = getIndex(r.getUuid());
         if (resumeExists > -1) storage[resumeExists] = r;
-        else System.out.println("(UpDate) Error: Resume "+r+" does not exist.");
+        else System.out.println("(UpDate) Error: Resume " + r + " does not exist.");
     }
 
     public void save(Resume r) {
@@ -25,15 +25,14 @@ public class ArrayStorage {
         if (resumeExists == -1) {
             storage[size] = r;
             size++;
-        }
-        else System.out.println("(Save) Error: resume "+r+" already exists.");
+        } else System.out.println("(Save) Error: resume " + r + " already exists.");
     }
 
     public Resume get(String uuid) {
         int resumeExists = getIndex(uuid);
         if (resumeExists > -1) return storage[resumeExists];
         else {
-            System.out.println("(Get) Error: Resume "+uuid+" does not exist.");
+            System.out.println("(Get) Error: Resume " + uuid + " does not exist.");
             return null;
         }
     }
@@ -44,12 +43,11 @@ public class ArrayStorage {
             size--;
             storage[resumeExists] = storage[size];
             storage[size] = null;
-        }
-        else System.out.println("(Delete) Error: Resume "+uuid+" does not exist.");
+        } else System.out.println("(Delete) Error: Resume " + uuid + " does not exist.");
     }
 
-    private int getIndex (String uuid) {
-        for (int i=0; i<size; i++) {
+    private int getIndex(String uuid) {
+        for (int i = 0; i < size; i++) {
             if ((storage[i] != null) && (storage[i].getUuid().equals(uuid))) {
                 return i;
             }
