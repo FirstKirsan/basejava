@@ -15,53 +15,46 @@ public class ArrayStorage {
     }
 
     public void update(Resume r) {
-        boolean resumeExists = false;
-        for (int i=0; i<size; i++) {
-            if ((storage[i] != null) && (storage[i].getUuid().equals(r.getUuid()))) {
-                // update
-                resumeExists = true;
-                break;
-            }
-        }
-        if (!resumeExists) System.out.println("(UpDate) Error: com.urise.webapp.model.Resume does not exist.");
+        int resumeExists = searchResume(r.getUuid());
+        if (resumeExists > -1) storage[resumeExists] = r;
+        else System.out.println("(UpDate) Error: Resume "+r+" does not exist.");
     }
 
     public void save(Resume r) {
-        boolean resumeExists = false;
-        for (int i=0; i<size; i++) {
-            if (storage[i].getUuid().equals(r.getUuid())) {
-                System.out.println("Error: This resume already exists.");
-                resumeExists = true;
-                break;
-            }
-        }
-        if (!resumeExists) {
+        int resumeExists = searchResume(r.getUuid());
+        if (resumeExists == -1) {
             storage[size] = r;
             size++;
         }
+        else System.out.println("(Save) Error: resume "+r+" already exists.");
     }
 
     public Resume get(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if ((storage[i] != null) && (storage[i].getUuid().equals(uuid))) {
-                return storage[i];
-            }
+        int resumeExists = searchResume(uuid);
+        if (resumeExists > -1) return storage[resumeExists];
+        else {
+            System.out.println("(Get) Error: Resume "+uuid+" does not exist.");
+            return null;
         }
-        return null;
     }
 
     public void delete(String uuid) {
-        boolean resumeExists = false;
-        for (int i = 0; i < size; i++) {
+        int resumeExists = searchResume(uuid);
+        if (resumeExists > -1) {
+            size--;
+            storage[resumeExists] = storage[size];
+            storage[size] = null;
+        }
+        else System.out.println("(Delete) Error: Resume "+uuid+" does not exist.");
+    }
+
+    private int searchResume (String uuid) {
+        for (int i=0; i<size; i++) {
             if ((storage[i] != null) && (storage[i].getUuid().equals(uuid))) {
-                size--;
-                storage[i] = storage[size];
-                storage[size] = null;
-                resumeExists = true;
-                break;
+                return i;
             }
         }
-        if (!resumeExists) System.out.println("(Delete) Error: com.urise.webapp.model.Resume does not exist.");
+        return -1;
     }
 
     /**
