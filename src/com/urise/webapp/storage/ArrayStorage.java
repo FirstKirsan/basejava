@@ -15,13 +15,13 @@ public class ArrayStorage {
     }
 
     public void update(Resume r) {
-        int resumeExists = searchResume(r.getUuid());
+        int resumeExists = getIndex(r.getUuid());
         if (resumeExists > -1) storage[resumeExists] = r;
         else System.out.println("(UpDate) Error: Resume "+r+" does not exist.");
     }
 
     public void save(Resume r) {
-        int resumeExists = searchResume(r.getUuid());
+        int resumeExists = getIndex(r.getUuid());
         if (resumeExists == -1) {
             storage[size] = r;
             size++;
@@ -30,7 +30,7 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        int resumeExists = searchResume(uuid);
+        int resumeExists = getIndex(uuid);
         if (resumeExists > -1) return storage[resumeExists];
         else {
             System.out.println("(Get) Error: Resume "+uuid+" does not exist.");
@@ -39,7 +39,7 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        int resumeExists = searchResume(uuid);
+        int resumeExists = getIndex(uuid);
         if (resumeExists > -1) {
             size--;
             storage[resumeExists] = storage[size];
@@ -48,7 +48,7 @@ public class ArrayStorage {
         else System.out.println("(Delete) Error: Resume "+uuid+" does not exist.");
     }
 
-    private int searchResume (String uuid) {
+    private int getIndex (String uuid) {
         for (int i=0; i<size; i++) {
             if ((storage[i] != null) && (storage[i].getUuid().equals(uuid))) {
                 return i;
