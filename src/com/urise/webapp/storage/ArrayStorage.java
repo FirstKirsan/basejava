@@ -21,11 +21,14 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        int resumeExists = getIndex(r.getUuid());
-        if (resumeExists == -1) {
+        if (getIndex(r.getUuid()) != -1) {
+            System.out.println("(Save) Error: resume " + r + " already exists.");
+        } else if (size == storage.length) {
+            System.out.println("(Save) Error: Storage overflow.");
+        } else {
             storage[size] = r;
             size++;
-        } else System.out.println("(Save) Error: resume " + r + " already exists.");
+        }
     }
 
     public Resume get(String uuid) {
