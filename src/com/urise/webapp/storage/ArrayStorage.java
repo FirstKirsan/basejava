@@ -31,15 +31,6 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
     }
 
-    public Resume get(String uuid) {
-        int resumeExists = getIndex(uuid);
-        if (resumeExists > -1) return storage[resumeExists];
-        else {
-            System.out.println("(Get) Error: Resume " + uuid + " does not exist.");
-            return null;
-        }
-    }
-
     public void delete(String uuid) {
         int resumeExists = getIndex(uuid);
         if (resumeExists > -1) {
@@ -49,7 +40,7 @@ public class ArrayStorage extends AbstractArrayStorage {
         } else System.out.println("(Delete) Error: Resume " + uuid + " does not exist.");
     }
 
-    private int getIndex(String uuid) {
+    protected int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
             if ((storage[i] != null) && (storage[i].getUuid().equals(uuid))) {
                 return i;

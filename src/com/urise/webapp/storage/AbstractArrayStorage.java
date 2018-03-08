@@ -15,4 +15,16 @@ public abstract class AbstractArrayStorage implements Storage {
     public int size() {
         return size;
     }
+
+    public Resume get(String uuid) {
+        int resumeExists = getIndex(uuid);
+        if (resumeExists > -1) return storage[resumeExists];
+        else {
+            System.out.println("(Get) Error: Resume " + uuid + " does not exist.");
+            return null;
+        }
+    }
+
+    protected abstract int getIndex(String uuid);
+
 }
