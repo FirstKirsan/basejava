@@ -9,17 +9,6 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-    public void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
-    }
-
-    public void update(Resume r) {
-        int resumeExists = getIndex(r.getUuid());
-        if (resumeExists > -1) storage[resumeExists] = r;
-        else System.out.println("(UpDate) Error: Resume " + r + " does not exist.");
-    }
-
     public void save(Resume r) {
         if (getIndex(r.getUuid()) != -1) {
             System.out.println("(Save) Error: resume " + r + " already exists.");
@@ -49,13 +38,6 @@ public class ArrayStorage extends AbstractArrayStorage {
         return -1;
     }
 
-    /**
-     * @return array, contains only Resumes in storage (without null)
-     */
-
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
-    }
 
 
 }
