@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class ArrayStorage extends AbstractArrayStorage {
 
     public void save(Resume r) {
-        if (getIndex(r.getUuid()) != -1) {
+        if (getIndex(r.getUuid()) > -1) {
             System.out.println("(Save) Error: resume " + r + " already exists.");
         } else if (size == STORAGE_LIMIT) {
             System.out.println("(Save) Error: Storage overflow.");
@@ -37,7 +37,6 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
         return -1;
     }
-
 
 
 }
