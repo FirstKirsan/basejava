@@ -29,12 +29,12 @@ public abstract class AbstractArrayStorage implements Storage {
         } else if (size == STORAGE_LIMIT) {
             System.out.println("(Save) Error: Storage overflow.");
         } else {
-            Insert(r);
+            insert(r);
             size++;
         }
     }
 
-    protected abstract void Insert(Resume r);
+    protected abstract void insert(Resume r);
 
     public int size() {
         return size;
