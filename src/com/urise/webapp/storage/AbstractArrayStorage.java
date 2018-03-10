@@ -55,12 +55,12 @@ public abstract class AbstractArrayStorage implements Storage {
         int resumeExists = getIndex(uuid);
         if (resumeExists > -1) {
             size--;
-            Delete(resumeExists);
+            delete(resumeExists);
             storage[size] = null;
         } else System.out.println("(Delete) Error: Resume " + uuid + " does not exist.");
     }
 
-    protected abstract void Delete(int resumeExists);
+    protected abstract void delete(int resumeExists);
 
     /**
      * @return array, contains only Resumes in storage (without null)

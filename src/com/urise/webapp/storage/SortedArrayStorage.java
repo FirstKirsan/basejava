@@ -20,7 +20,8 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         storage[indexInsert] = r;
     }
 
-    protected void Delete(int resumeExists) {
+    @Override
+    protected void delete(int resumeExists) {
         System.arraycopy(storage, resumeExists + 1, storage, resumeExists, size - resumeExists);
     }
 
